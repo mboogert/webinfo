@@ -2,6 +2,6 @@ FROM php:7-apache
 
 MAINTAINER Marcel Boogert <marcel@mtdb.nl>
 
-COPY index.php /var/www/index.php
+ADD index.php /var/www/html/index.php
 
 EXPOSE 80
