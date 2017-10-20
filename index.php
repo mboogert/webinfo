@@ -19,11 +19,11 @@ $local = array("localhost", "lt30");
 if (in_array($container_hostname, $dc1)) {
         $datacenter = "dc1";
         $dc1_color = "green";
-        $dc2_color = "grey";
+        $dc2_color = "blue";
 }
 if (in_array($container_hostname, $dc2)) {
         $datacenter = "dc2";
-        $dc1_color = "grey";
+        $dc1_color = "blue";
         $dc2_color = "green";
 }
 if (in_array($container_hostname, $local)) {
@@ -34,7 +34,7 @@ if (in_array($container_hostname, $local)) {
 <html>
 <head>
         <title>Hi, my name is...</title>
-        <meta http-equiv="refresh" content="1">
+        <!--<meta http-equiv="refresh" content="1">-->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
         <style>
         body {
@@ -51,8 +51,8 @@ if (in_array($container_hostname, $local)) {
 </head>
 <body>
         <div style="background-image: url(/swarm.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
-                <div style="background-image: url(/container-<?php print $dc1_color; ?>.png); position: absolute; left: 50; top: 400; height: 200px; width: 200px;"></div>
-                <div style="background-image: url(/container-<?php print $dc2_color; ?>.png); position: absolute; right: 50; top: 400; height: 200px; width: 200px;"></div>
+                <div style="background-image: url(/swarm-moby-<?php print $dc1_color; ?>.png); position: absolute; left: 50; top: 400; height: 200px; width: 200px;"></div>
+                <div style="background-image: url(/swarm-moby-<?php print $dc2_color; ?>.png); position: absolute; right: 50; top: 400; height: 200px; width: 200px;"></div>
         </div>
         <h1>Hi...</h1>
         <?php if($container_hostname) {?><h3>...my docker host is <?php echo $container_hostname; ?></h3><?php } ?>
