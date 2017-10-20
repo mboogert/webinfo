@@ -13,8 +13,8 @@ fclose($myfile);
 ?>
 
 <?php
-$dataplace = array('pvm11150','pvm11151','pvm11152');
-$eunetworks = array('pvm11030','pvm11031','pvm11032');
+$dataplace = array('pvm11150.proservers.nl','pvm11151.proservers.nl','pvm11152.proservers.nl');
+$eunetworks = array('pvm11030.proserve.nl','pvm11031.proserve.nl','pvm11032.proserve.nl');
 
 if (in_array($container_hostname, $dataplace))
         $datacenter = 'dataplace';
