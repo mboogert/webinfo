@@ -7,19 +7,27 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 ?>
 
 <?php
-$myfile = fopen("/etc/hostname", "r") or die("Unable to open file!");
-$container_hostname = fread($myfile,filesize("/etc/hostname"));
-fclose($myfile);
+$file_content = file('/etc/hostname', FILE_IGNORE_NEW_LINES);
+$container_hostname = $file_content[0];
 ?>
 
 <?php
-$dataplace = array('pvm11150.proservers.nl','pvm11151.proservers.nl','pvm11152.proservers.nl');
-$eunetworks = array('pvm11030.proserve.nl','pvm11031.proserve.nl','pvm11032.proserve.nl');
+$dataplace = array("pvm11150.proservers.nl", "pvm11151.proservers.nl", "pvm11152.proservers.nl");
+$eunetworks = array("pvm11030.proserve.nl", "pvm11031.proserve.nl", "pvm11032.proserve.nl");
+$local = array("localhost", "lt30");
 
-if (in_array($container_hostname, $dataplace))
-        $datacenter = 'dataplace';
-if (in_array($container_hostname, $eunetworks))
-        $datacenter = 'eunetworks';
+if (in_array($container_hostname, $dataplace)) {
+        $datacenter = "dataplace";
+}
+if (in_array($container_hostname, $eunetworks)) {
+        $datacenter = "eunetworks";
+}
+if (in_array($container_hostname, $local)) {
+        $datacenter = "localhost";
+}
+if (in_array($container_hostname, $local)) {
+        $datacenter = "localhost";
+}
 ?>
 
 <html>
