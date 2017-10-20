@@ -6,6 +6,12 @@ header("Pragma: no-cache"); // HTTP/1.0
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 ?>
 
+<?php
+$myfile = fopen("/etc/hostname", "r") or die("Unable to open file!");
+$container_hostname = fread($myfile,filesize("/etc/hostname"));
+fclose($myfile);
+?>
+
 <html>
 <head>
         <title>Hi, my name is...</title>
@@ -26,7 +32,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 <body>
         <img id="logo" src="logo.png" />
         <h1>Hi...</h1>
-        <?php if($_ENV["CONTAINER_HOST"]) {?><h3>...my docker host is <?php echo $_ENV["CONTAINER_HOST"]; ?></h3><?php } ?>
+        <?php if($container_hostname) {?><h3>...my docker host is <?php echo $container_hostname; ?></h3><?php } ?>
         <?php if($_SERVER["SERVER_NAME"]) {?><h3>...my host name is <?php echo $_SERVER["SERVER_NAME"]; ?></h3><?php } ?>
         <?php if($_SERVER["SERVER_ADDR"]) {?><h3>...my ip address is <?php echo $_SERVER["SERVER_ADDR"]; ?></h3><?php } ?>
         <?php if($_ENV["HOSTNAME"]) {?><h3>...my container name is <?php echo $_ENV["HOSTNAME"]; ?></h3><?php } ?>
