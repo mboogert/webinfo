@@ -12,18 +12,19 @@ $container_hostname = $file_content[0];
 ?>
 
 <?php
-$dataplace = array("pvm11150.proservers.nl", "pvm11151.proservers.nl", "pvm11152.proservers.nl");
-$eunetworks = array("pvm11030.proserve.nl", "pvm11031.proserve.nl", "pvm11032.proserve.nl");
+$dc1 = array("pvm11150.proservers.nl", "pvm11151.proservers.nl", "pvm11152.proservers.nl");
+$dc2 = array("pvm11030.proserve.nl", "pvm11031.proserve.nl", "pvm11032.proserve.nl");
 $local = array("localhost", "lt30");
 
-if (in_array($container_hostname, $dataplace)) {
-        $datacenter = "dataplace";
+if (in_array($container_hostname, $dc1)) {
+        $datacenter = "dc1";
+        $dc1_color = "green";
+        $dc2_color = "grey";
 }
-if (in_array($container_hostname, $eunetworks)) {
-        $datacenter = "eunetworks";
-}
-if (in_array($container_hostname, $local)) {
-        $datacenter = "localhost";
+if (in_array($container_hostname, $dc2)) {
+        $datacenter = "dc2";
+        $dc1_color = "grey";
+        $dc2_color = "green";
 }
 if (in_array($container_hostname, $local)) {
         $datacenter = "localhost";
@@ -49,7 +50,10 @@ if (in_array($container_hostname, $local)) {
         </style>
 </head>
 <body>
-        <img id="logo" src="logo.png" />
+        <div style="background-image: url(/swarm.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
+                <div style="background-image: url(/container-<?php print $dc1_color; ?>.png); position: absolute; left: 50; top: 400; height: 200px; width: 200px;"></div>
+                <div style="background-image: url(/container-<?php print $dc2_color; ?>.png); position: absolute; right: 50; top: 400; height: 200px; width: 200px;"></div>
+        </div>
         <h1>Hi...</h1>
         <?php if($container_hostname) {?><h3>...my docker host is <?php echo $container_hostname; ?></h3><?php } ?>
         <?php if($datacenter) {?><h3>...my datacenter is <?php echo $datacenter; ?></h3><?php } ?>
@@ -68,6 +72,7 @@ if (in_array($container_hostname, $local)) {
                         ];
                 }
         }
-        ?>
+?>
+</div>
 </body>
 </html>
