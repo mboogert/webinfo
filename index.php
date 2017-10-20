@@ -28,6 +28,8 @@ if (in_array($container_hostname, $dc2)) {
 }
 if (in_array($container_hostname, $local)) {
         $datacenter = "localhost";
+        $dc1_color = "blue";
+        $dc2_color = "blue";
 }
 ?>
 
@@ -51,8 +53,8 @@ if (in_array($container_hostname, $local)) {
 </head>
 <body>
         <div style="background-image: url(/swarm.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
-                <div style="background-image: url(/swarm-moby-<?php print $dc1_color; ?>.png); position: absolute; left: 50; top: 400; height: 200px; width: 200px;"></div>
-                <div style="background-image: url(/swarm-moby-<?php print $dc2_color; ?>.png); position: absolute; right: 50; top: 400; height: 200px; width: 200px;"></div>
+                <div style="background-image: url(/swarm-moby-<?php print $dc1_color; ?>.png); position: absolute; left: 50; top: 600; width: 200px; height: 108;"></div>
+                <div style="background-image: url(/swarm-moby-<?php print $dc2_color; ?>.png); position: absolute; right: 50; top: 600; width: 200px; height: 108px;"></div>
         </div>
         <h1>Hi...</h1>
         <?php if($container_hostname) {?><h3>...my docker host is <?php echo $container_hostname; ?></h3><?php } ?>
