@@ -12,6 +12,16 @@ $container_hostname = fread($myfile,filesize("/etc/hostname"));
 fclose($myfile);
 ?>
 
+<?php
+$dataplace = array('pvm11150','pvm11151','pvm11152');
+$eunetworks = array('pvm11030','pvm11031','pvm11032');
+
+if (in_array($container_hostname, $dataplace))
+        $datacenter = 'dataplace';
+if (in_array($container_hostname, $eunetworks))
+        $datacenter = 'eunetworks';
+?>
+
 <html>
 <head>
         <title>Hi, my name is...</title>
@@ -33,6 +43,7 @@ fclose($myfile);
         <img id="logo" src="logo.png" />
         <h1>Hi...</h1>
         <?php if($container_hostname) {?><h3>...my docker host is <?php echo $container_hostname; ?></h3><?php } ?>
+        <?php if($datacenter) {?><h3>...my datacenter is <?php echo $datacenter; ?></h3><?php } ?>
         <?php if($_SERVER["SERVER_NAME"]) {?><h3>...my host name is <?php echo $_SERVER["SERVER_NAME"]; ?></h3><?php } ?>
         <?php if($_SERVER["SERVER_ADDR"]) {?><h3>...my ip address is <?php echo $_SERVER["SERVER_ADDR"]; ?></h3><?php } ?>
         <?php if($_ENV["HOSTNAME"]) {?><h3>...my container name is <?php echo $_ENV["HOSTNAME"]; ?></h3><?php } ?>
