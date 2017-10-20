@@ -8,7 +8,7 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 
 <html>
 <head>
-        <title>Hello world!</title>
+        <title>Hi, my name is...</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
         <style>
         body {
@@ -26,6 +26,8 @@ header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 <body>
         <img id="logo" src="logo.png" />
         <h1>Hi...</h1>
+        echo 'My username is ' .$_ENV["USER"] . '!';
+        <?php if($_ENV["DOCKER_HOST"]) {?><h3>...my docker host is <?php echo $_ENV["DOCKER_HOST"]; ?></h3><?php } ?>
         <?php if($_SERVER["SERVER_NAME"]) {?><h3>...my host name is <?php echo $_SERVER["SERVER_NAME"]; ?></h3><?php } ?>
         <?php if($_SERVER["SERVER_ADDR"]) {?><h3>...my ip address is <?php echo $_SERVER["SERVER_ADDR"]; ?></h3><?php } ?>
         <?php if($_ENV["HOSTNAME"]) {?><h3>...my container name is <?php echo $_ENV["HOSTNAME"]; ?></h3><?php } ?>
