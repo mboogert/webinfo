@@ -55,6 +55,7 @@ if (in_array($container_hostname, $local)) {
         </style>
 </head>
 <body>
+<<<<<<< HEAD
 	<div style="background-image: url(/background.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
 	<div style="background-image: url(/background-<?php print $background_direction; ?>.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
 		<div style="background-image: url(/swarm-moby-<?php print $dc1_color; ?>.png); position: absolute; left: 50; top: 600; width: 200px; height: 108;"></div>
@@ -66,6 +67,19 @@ if (in_array($container_hostname, $local)) {
 		<div style="position: absolute; left: 50; top: 550; width: 250px; height: 200px;"><?php if($background_direction=="left"){echo "container: " . $_ENV["HOSTNAME"];}?></div>
 		<div style="position: absolute; right: 50; top: 550; width: 250px; height: 200px;"><?php if($background_direction=="right"){echo "container: " . $_ENV["HOSTNAME"];}?></div>
 	</div>
+=======
+        <div style="background-image: url(/background.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
+        <div style="background-image: url(/background-<?php print $background_direction; ?>.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
+                <div style="background-image: url(/swarm-moby-<?php print $dc1_color; ?>.png); position: absolute; left: 50; top: 600; width: 200px; height: 108;"></div>
+                <div style="background-image: url(/swarm-moby-<?php print $dc2_color; ?>.png); position: absolute; right: 50; top: 600; width: 200px; height: 108px;"></div>
+                <div style="position: absolute; left: 50; top: 450; width: 250px; height: 200px;"><?php if($background_direction=="left"){echo "swarm worker : " . $container_hostname;}?></div>
+                <div style="position: absolute; right: 50; top: 450; width: 250px; height: 200px;"><?php if($background_direction=="right"){echo "swarm worker : " . $container_hostname;}?></div>
+                <div style="position: absolute; left: 50; top: 500; width: 250px; height: 200px;"><?php if($background_direction=="left"){echo "ip address" . $_SERVER["SERVER_ADDR"];}?></div>
+                <div style="position: absolute; right: 50; top: 500; width: 250px; height: 200px;"><?php if($background_direction=="right"){echo "ip address" . $_SERVER["SERVER_ADDR"];}?></div>
+                <div style="position: absolute; left: 50; top: 550; width: 250px; height: 200px;"><?php if($background_direction=="left"){echo "container : " . $_ENV["HOSTNAME"];}?></div>
+                <div style="position: absolute; right: 50; top: 550; width: 250px; height: 200px;"><?php if($background_direction=="right"){echo "container : " . $_ENV["HOSTNAME"];}?></div>
+        </div>
+>>>>>>> 06c9300d2297d85a56cc2b5d677a66217c0012cb
         <?php
         $links = [];
         foreach($_ENV as $key => $value) {
