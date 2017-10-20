@@ -33,6 +33,7 @@ if (in_array($container_hostname, $local)) {
 <html>
 <head>
         <title>Hi, my name is...</title>
+        <meta http-equiv="refresh" content="1">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
         <style>
         body {
