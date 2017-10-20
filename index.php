@@ -32,7 +32,7 @@ if (in_array($container_hostname, $local)) {
         $datacenter = "localhost";
         $dc1_color = "blue";
         $dc2_color = "blue";
-        $background_direction = "";
+        $background_direction = "left";
 }
 ?>
 
@@ -59,13 +59,13 @@ if (in_array($container_hostname, $local)) {
         <div style="background-image: url(/background-<?php print $background_direction; ?>.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
                 <div style="background-image: url(/swarm-moby-<?php print $dc1_color; ?>.png); position: absolute; left: 50; top: 600; width: 200px; height: 108;"></div>
                 <div style="background-image: url(/swarm-moby-<?php print $dc2_color; ?>.png); position: absolute; right: 50; top: 600; width: 200px; height: 108px;"></div>
+                <div style="position: absolute; left: 50; top: 500; width: 200px; height: 200px;"><?php if($background_direction=="left"){echo "swarm worker : " . $container_hostname;}?></div>
+                <div style="position: absolute; right: 50; top: 500; width: 200px; height: 200px;"><?php if($background_direction=="right"){echo "swarm worker : " . $container_hostname;}?></div>
+                <div style="position: absolute; left: 50; top: 525; width: 200px; height: 200px;"><?php if($background_direction=="left"){echo "ip address" . $_SERVER["SERVER_ADDR"];}?></div>
+                <div style="position: absolute; right: 50; top: 525; width: 200px; height: 200px;"><?php if($background_direction=="right"){echo "ip address" . $_SERVER["SERVER_ADDR"];}?></div>
+                <div style="position: absolute; left: 50; top: 550; width: 200px; height: 200px;"><?php if($background_direction=="left"){echo "container : " . $_ENV["HOSTNAME"];}?></div>
+                <div style="position: absolute; right: 50; top: 550; width: 200px; height: 200px;"><?php if($background_direction=="right"){echo "container : " . $_ENV["HOSTNAME"];}?></div>
         </div>
-        <h1>Hi...</h1>
-        <?php if($container_hostname) {?><h3>...my docker host is <?php echo $container_hostname; ?></h3><?php } ?>
-        <?php if($datacenter) {?><h3>...my datacenter is <?php echo $datacenter; ?></h3><?php } ?>
-        <?php if($_SERVER["SERVER_NAME"]) {?><h3>...my host name is <?php echo $_SERVER["SERVER_NAME"]; ?></h3><?php } ?>
-        <?php if($_SERVER["SERVER_ADDR"]) {?><h3>...my ip address is <?php echo $_SERVER["SERVER_ADDR"]; ?></h3><?php } ?>
-        <?php if($_ENV["HOSTNAME"]) {?><h3>...my container name is <?php echo $_ENV["HOSTNAME"]; ?></h3><?php } ?>
         <?php
         $links = [];
         foreach($_ENV as $key => $value) {
