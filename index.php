@@ -20,16 +20,19 @@ if (in_array($container_hostname, $dc1)) {
         $datacenter = "dc1";
         $dc1_color = "green";
         $dc2_color = "blue";
+        $background_direction = "left";
 }
 if (in_array($container_hostname, $dc2)) {
         $datacenter = "dc2";
         $dc1_color = "blue";
         $dc2_color = "green";
+        $background_direction = "right";
 }
 if (in_array($container_hostname, $local)) {
         $datacenter = "localhost";
         $dc1_color = "blue";
         $dc2_color = "blue";
+        $background_direction = "";
 }
 ?>
 
@@ -52,7 +55,7 @@ if (in_array($container_hostname, $local)) {
         </style>
 </head>
 <body>
-        <div style="background-image: url(/swarm.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
+        <div style="background-image: url(/background<?php print "-" . $background_direction; ?>.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
                 <div style="background-image: url(/swarm-moby-<?php print $dc1_color; ?>.png); position: absolute; left: 50; top: 600; width: 200px; height: 108;"></div>
                 <div style="background-image: url(/swarm-moby-<?php print $dc2_color; ?>.png); position: absolute; right: 50; top: 600; width: 200px; height: 108px;"></div>
         </div>
