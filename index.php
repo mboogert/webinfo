@@ -12,21 +12,27 @@ $container_hostname = $file_content[0];
 ?>
 
 <?php
-$dataplace = array("pvm11150.proservers.nl", "pvm11151.proservers.nl", "pvm11152.proservers.nl");
-$eunetworks = array("pvm11030.proserve.nl", "pvm11031.proserve.nl", "pvm11032.proserve.nl");
+$dc1 = array("pvm11150.proservers.nl", "pvm11151.proservers.nl", "pvm11152.proservers.nl");
+$dc2 = array("pvm11030.proserve.nl", "pvm11031.proserve.nl", "pvm11032.proserve.nl");
 $local = array("localhost", "lt30");
 
-if (in_array($container_hostname, $dataplace)) {
-        $datacenter = "dataplace";
+if (in_array($container_hostname, $dc1)) {
+        $datacenter = "dc1";
+        $dc1_color = "green";
+        $dc2_color = "blue";
+        $background_direction = "left";
 }
-if (in_array($container_hostname, $eunetworks)) {
-        $datacenter = "eunetworks";
+if (in_array($container_hostname, $dc2)) {
+        $datacenter = "dc2";
+        $dc1_color = "blue";
+        $dc2_color = "green";
+        $background_direction = "right";
 }
 if (in_array($container_hostname, $local)) {
         $datacenter = "localhost";
-}
-if (in_array($container_hostname, $local)) {
-        $datacenter = "localhost";
+        $dc1_color = "blue";
+        $dc2_color = "blue";
+        $background_direction = "left";
 }
 ?>
 
@@ -49,13 +55,17 @@ if (in_array($container_hostname, $local)) {
         </style>
 </head>
 <body>
-        <img id="logo" src="logo.png" />
-        <h1>Hi...</h1>
-        <?php if($container_hostname) {?><h3>...my docker host is <?php echo $container_hostname; ?></h3><?php } ?>
-        <?php if($datacenter) {?><h3>...my datacenter is <?php echo $datacenter; ?></h3><?php } ?>
-        <?php if($_SERVER["SERVER_NAME"]) {?><h3>...my host name is <?php echo $_SERVER["SERVER_NAME"]; ?></h3><?php } ?>
-        <?php if($_SERVER["SERVER_ADDR"]) {?><h3>...my ip address is <?php echo $_SERVER["SERVER_ADDR"]; ?></h3><?php } ?>
-        <?php if($_ENV["HOSTNAME"]) {?><h3>...my container name is <?php echo $_ENV["HOSTNAME"]; ?></h3><?php } ?>
+	<div style="background-image: url(/background.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
+	<div style="background-image: url(/background-<?php print $background_direction; ?>.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
+		<div style="background-image: url(/swarm-moby-<?php print $dc1_color; ?>.png); position: absolute; left: 50; top: 600; width: 200px; height: 108;"></div>
+		<div style="background-image: url(/swarm-moby-<?php print $dc2_color; ?>.png); position: absolute; right: 50; top: 600; width: 200px; height: 108px;"></div>
+		<div style="position: absolute; left: 50; top: 450; width: 250px; height: 200px;"><?php if($background_direction=="left"){echo "worker: " . $container_hostname;}?></div>
+		<div style="position: absolute; right: 50; top: 450; width: 250px; height: 200px;"><?php if($background_direction=="right"){echo "worker: " . $container_hostname;}?></div>
+		<div style="position: absolute; left: 50; top: 500; width: 250px; height: 200px;"><?php if($background_direction=="left"){echo "ip: " . $_SERVER["SERVER_ADDR"];}?></div>
+		<div style="position: absolute; right: 50; top: 500; width: 250px; height: 200px;"><?php if($background_direction=="right"){echo "ip: " . $_SERVER["SERVER_ADDR"];}?></div>
+		<div style="position: absolute; left: 50; top: 550; width: 250px; height: 200px;"><?php if($background_direction=="left"){echo "container: " . $_ENV["HOSTNAME"];}?></div>
+		<div style="position: absolute; right: 50; top: 550; width: 250px; height: 200px;"><?php if($background_direction=="right"){echo "container: " . $_ENV["HOSTNAME"];}?></div>
+	</div>
         <?php
         $links = [];
         foreach($_ENV as $key => $value) {
@@ -68,6 +78,7 @@ if (in_array($container_hostname, $local)) {
                         ];
                 }
         }
-        ?>
+?>
+</div>
 </body>
 </html>
