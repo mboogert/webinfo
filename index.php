@@ -33,6 +33,10 @@ $pvm11030_color = "blue";
 $pvm11031_color = "blue";
 $pvm11032_color = "blue";
 
+$total_counter = ($redis -> get('total_counter'));
+$total_counter++;
+$redis -> set('total_counter', $total_counter);
+
 $pvm11150_counter = ($redis -> get('pvm11150_counter'));
 $pvm11151_counter = ($redis -> get('pvm11151_counter'));
 $pvm11152_counter = ($redis -> get('pvm11152_counter'));
@@ -114,6 +118,9 @@ if (in_array($container_hostname, $local)) {
 <body>
 <div style="background-image: url(/background.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
 	<div style="background-image: url(/background-<?php print $background_direction; ?>.png); position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto; height: 820px; width: 703px;">
+
+		<div style="position: absolute; left: 0; right:0; top: 70px; text-align: center;"><b>total requests: <?php print $total_counter; ?></b></div>
+
 		<div style="background-image: url(/swarm-moby-<?php print $dc1_color; ?>.png); position: absolute; left: 75; top: 450; width: 200px; height: 108;"></div>
 		<div style="background-image: url(/swarm-moby-<?php print $dc2_color; ?>.png); position: absolute; right: 75; top: 450; width: 200px; height: 108px;"></div>
 
@@ -125,11 +132,11 @@ if (in_array($container_hostname, $local)) {
 		<div style="position: absolute; left: 250; top: 710; width: 55; text-align: center;"><b><?php print $pvm11152_counter; ?></b></div>
 
 		<div style="background-image: url(/docker-host-<?php print $pvm11030_color; ?>.png); position: absolute; right: 25; top: 600; width: 84px; height: 111px;"></div>
-		<div style="position: absolute; right: 25; top: 710; width: 55; text-align: center;"><b><?php print $pvm11030_counter; ?></b></div>
+		<div style="position: absolute; right: 45; top: 710; width: 55; text-align: center;"><b><?php print $pvm11030_counter; ?></b></div>
 		<div style="background-image: url(/docker-host-<?php print $pvm11031_color; ?>.png); position: absolute; right: 140; top: 600; width: 84px; height: 111px;"></div>
-		<div style="position: absolute; right: 140; top: 710; width: 55; text-align: center;"><b><?php print $pvm11031_counter; ?></b></div>
+		<div style="position: absolute; right: 160; top: 710; width: 55; text-align: center;"><b><?php print $pvm11031_counter; ?></b></div>
 		<div style="background-image: url(/docker-host-<?php print $pvm11032_color; ?>.png); position: absolute; right: 250; top: 600; width: 84px; height: 111px;"></div>
-		<div style="position: absolute; right: 250; top: 710; width: 55; text-align: center;"><b><?php print $pvm11032_counter; ?></b></div>
+		<div style="position: absolute; right: 270; top: 710; width: 55; text-align: center;"><b><?php print $pvm11032_counter; ?></b></div>
 
 	</div>
 </div>
